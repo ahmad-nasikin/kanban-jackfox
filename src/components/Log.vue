@@ -28,13 +28,13 @@
               Status: {{ dataTask.status}}
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal" @click="deleteTask(dataTask['.key'])">delete</button>
-                 <button type="button" class="btn btn-info" data-dismiss="modal" @click="moveToTodo(dataTask['.key'], dataTask.title, dataTask.description, dataTask.point, dataTask.assign_to)">todo</button>
-               </div>
+               <button type="button" class="btn btn-danger" data-dismiss="modal" @click="remove(dataTask['.key'])">delete</button>
+               <button type="button" class="btn btn-info" data-dismiss="modal" @click="moveToTodo(dataTask['.key'], dataTask.title, dataTask.description, dataTask.point, dataTask.assign_to)">todo</button>
              </div>
            </div>
          </div>
-        </div>
+       </div>
+      </div>
      </div>
     </div>
     </div>
@@ -62,13 +62,18 @@ export default {
           this.dataTask = this.log[i]
         }
       }
+    },
+    remove (id) {
+      if (window.confirm('delete this task')) {
+        this.$db.ref('task/log/' + id).remove()
+      }
+    },
+    moveToTodo (id) {
+
+    },
+    created () {
+      this.show()
     }
-  },
-  created () {
-    this.show()
-  },
-  delete (id) {
-    this.$db.ref('task/log' + id).remove()
   }
 }
 </script>
