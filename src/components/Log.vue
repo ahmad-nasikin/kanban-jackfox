@@ -68,8 +68,17 @@ export default {
         this.$db.ref('task/log/' + id).remove()
       }
     },
-    moveToTodo (id) {
-
+    moveToTodo (id, title, description, point, assign) {
+      if (window.confirm('move to todo')) {
+        this.$db.ref('task/todo').push({
+          title: title,
+          description: description,
+          point: point,
+          assign_to: assign,
+          status: 'todo'
+        })
+        this.$db.ref('task/log/' + id).remove()
+      }
     },
     created () {
       this.show()

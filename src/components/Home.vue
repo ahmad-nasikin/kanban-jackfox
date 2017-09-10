@@ -52,14 +52,7 @@
           <log></log>
         </div>
         <div class="col-md-3">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title glyphicon glyphicon-plus">  Todo</h3>
-            </div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
+          <todo></todo>
         </div>
         <div class="col-md-3">
           <div class="panel panel-info">
@@ -88,9 +81,11 @@
 
 <script>
 import log from '@/components/Log'
+import todo from '@/components/Todo'
 export default {
   components: {
-    log
+    log,
+    todo
   },
   data () {
     return {
