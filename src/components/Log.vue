@@ -9,7 +9,7 @@
       <div class="panel-body">
         <p>Point : {{ logs.point }}</p>
         <p>Assign to : {{logs.assign_to }}</p>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2" @click="getData(logs['.key'])">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2" @click="getData(logs)">
          Details
         </button>
         <!-- Modal -->
@@ -29,7 +29,7 @@
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-danger" data-dismiss="modal" @click="remove(dataTask['.key'])">delete</button>
-               <button type="button" class="btn btn-info" data-dismiss="modal" @click="moveToTodo(dataTask['.key'], dataTask.title, dataTask.description, dataTask.point, dataTask.assign_to)">todo</button>
+               <button type="button" class="btn btn-primary" data-dismiss="modal" @click="moveToTodo(dataTask['.key'], dataTask.title, dataTask.description, dataTask.point, dataTask.assign_to)">todo</button>
              </div>
            </div>
          </div>
@@ -56,12 +56,9 @@ export default {
     }
   },
   methods: {
-    getData (id) {
-      for (let i = 0; i < this.log.length; i++) {
-        if (id === this.log[i]['.key']) {
-          this.dataTask = this.log[i]
-        }
-      }
+    getData (log) {
+      console.log('ini data log', log)
+      this.dataTask = log
     },
     remove (id) {
       if (window.confirm('delete this task')) {

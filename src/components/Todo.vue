@@ -9,7 +9,7 @@
       <div class="panel-body">
         <p>Point : {{ todos.point }}</p>
         <p>Assign to : {{todos.assign_to }}</p>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal3" @click="getDataTodo(todos)">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3" @click="getDataTodo(todos)">
          Details
         </button>
       </div>
@@ -19,7 +19,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel">Details task "{{ detail.title }}" for {{ detail.assign_to }}</h3>
+              <h3 class="modal-title" id="exampleModalLabel1">Details task "{{ detail.title }}" for {{ detail.assign_to }}</h3>
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -30,6 +30,7 @@
              Status: {{ detail.status}}
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" @click="moveToLog(detail['.key'], detail.title, detail.description, detail.point, detail.assign_to)">Log</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" @click="remove(detail['.key'])">delete</button>
               <button type="button" class="btn btn-info" data-dismiss="modal" @click="moveToDoing(detail['.key'], detail.title, detail.description, detail.point, detail.assign_to)">Doing</button>
             </div>
@@ -62,6 +63,18 @@ export default {
     },
     remove (id) {
       if (window.confirm('delete this task')) {
+        this.$db.ref('task/todo/' + id).remove()
+      }
+    },
+    moveToLog (id, title, description, point, assign) {
+      if (window.confirm('move to log')) {
+        this.$db.ref('task/log').push({
+          title: title,
+          description: description,
+          point: point,
+          assign_to: assign,
+          status: 'log'
+        })
         this.$db.ref('task/todo/' + id).remove()
       }
     },

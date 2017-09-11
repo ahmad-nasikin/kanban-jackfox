@@ -55,24 +55,11 @@
           <todo></todo>
         </div>
         <div class="col-md-3">
-          <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title glyphicon glyphicon-play-circle">  Doing</h3>
-        </div>
-        <div class="panel-body">
-          Panel content
-        </div>
+          <doing></doing>
       </div>
         </div>
         <div class="col-md-3">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title glyphicon glyphicon-check">  Done</h3>
-            </div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
+          <done></done>
         </div>
       </div>
     </div>
@@ -82,10 +69,14 @@
 <script>
 import log from '@/components/Log'
 import todo from '@/components/Todo'
+import doing from '@/components/Doing'
+import done from '@/components/Done'
 export default {
   components: {
     log,
-    todo
+    todo,
+    doing,
+    done
   },
   data () {
     return {
