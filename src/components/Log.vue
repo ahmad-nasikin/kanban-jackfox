@@ -4,7 +4,7 @@
       <h3 class="glyphicon glyphicon-list-alt panel-title">  Log</h3>
     </div>
     <div class="panel-body">
-    <div class="panel panel-default" v-for="logs in log">
+    <div class="panel panel-default panel-danger" v-for="logs in log">
       <div class="panel-heading">{{ logs.title }}</div>
       <div class="panel-body">
         <p>Point : {{ logs.point }}</p>
